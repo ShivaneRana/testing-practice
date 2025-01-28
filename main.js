@@ -83,10 +83,41 @@ function caesarCipher(value,key){
     return result.join("");
 }
 
+function analyzeArray(arr){
+    if(!Array.isArray(arr)){
+        return "not an array";
+    }
+
+    let length = arr.length;
+    let average = Math.floor((arr.reduce((prev,cur) => prev + cur,0)) / arr.length);
+
+    let max = arr[0];
+    let min = arr[0];
+
+    arr.forEach(item => {
+        if(item > max){
+            max = item;
+        }
+
+        if(item < min){
+            min = item;
+        }
+    })
+
+    return {
+        average,
+        min,
+        max,
+        length,
+    }
+}
+
+
 
 module.exports = {
     capitalize,
     reverseString,
     calculator,
-    caesarCipher
+    caesarCipher,
+    analyzeArray
 }
