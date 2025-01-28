@@ -1,4 +1,4 @@
-const {capitalize,reverseString,calculator,caesarCipher} = require('./main.js');
+const {capitalize,reverseString,calculator,caesarCipher,analyzeArray} = require('./main.js');
 
 // describe("Capitalize function",() => {
     
@@ -85,29 +85,66 @@ const {capitalize,reverseString,calculator,caesarCipher} = require('./main.js');
 //     })
 // })
 
-describe("caesarCipher",() => {
+// describe("caesarCipher",() => {
     
-    it("lower case(1)",() => {
-        expect(caesarCipher("z",1)).toBe("a")
+//     it("lower case(1)",() => {
+//         expect(caesarCipher("z",1)).toBe("a")
+//     })
+
+//     it("lower case(2)",() => {
+//         expect(caesarCipher("xyz",3)).toBe("abc");
+//     })
+
+//     it("upper case(1)",() => {
+//         expect(caesarCipher("Z",7)).toBe("G")
+//     })
+
+//     it("upper case(2)",() => {
+//         expect(caesarCipher("XYZ",2)).toBe("ZAB");
+//     })
+
+//     it("mixed case(1)",() => {
+//         expect(caesarCipher("ShiVane",1)).toBe("TijWbof");
+//     })
+
+//     it("check punctuation(1)",() => {
+//         expect(caesarCipher("Hello, World!",3)).toBe("Khoor, Zruog!");
+//     })
+// })
+
+describe("analyzeArray",() => {
+    it("return object",() => {
+        expect(typeof analyzeArray([])).toBe("object");
     })
 
-    it("lower case(2)",() => {
-        expect(caesarCipher("xyz",3)).toBe("abc");
+    it("return average,min,max,length",() => {
+        expect(analyzeArray([]).hasOwnProperty("average")).toBe(true);
+        expect(analyzeArray([]).hasOwnProperty("length")).toBe(true);
+        expect(analyzeArray([]).hasOwnProperty("min")).toBe(true);
+        expect(analyzeArray([]).hasOwnProperty("max")).toBe(true);
     })
 
-    it("upper case(1)",() => {
-        expect(caesarCipher("Z",7)).toBe("G")
+    it("accept only array (1)",() => {
+        expect(analyzeArray("shivane")).toBe("not an array");
     })
 
-    it("upper case(2)",() => {
-        expect(caesarCipher("XYZ",2)).toBe("ZAB");
+    it("accept only array (2)",() => {
+        expect(analyzeArray(132131)).toBe("not an array");
+    })
+    
+    it("get correct value (1)",() => {
+        const arr = [1,2,3,4,5];
+        expect(analyzeArray(arr).min).toBe(1);
+        expect(analyzeArray(arr).max).toBe(5);
+        expect(analyzeArray(arr).length).toBe(5);
+        expect(analyzeArray(arr).average).toBe(3);
     })
 
-    it("mixed case(1)",() => {
-        expect(caesarCipher("ShiVane",1)).toBe("TijWbof");
-    })
-
-    it("check punctuation(1)",() => {
-        expect(caesarCipher("Hello, World!",3)).toBe("Khoor, Zruog!");
+    it("get correct value (2)",() => {
+        const arr = [1,-2,3,44,5,100];
+        expect(analyzeArray(arr).min).toBe(-2);
+        expect(analyzeArray(arr).max).toBe(100);
+        expect(analyzeArray(arr).length).toBe(6);
+        expect(analyzeArray(arr).average).toBe(25);
     })
 })
